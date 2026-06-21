@@ -1,8 +1,16 @@
+@font-face {
+  font-family: neuMachina;
+  src: url("../font/NeueMachina-Regular.otf");
+}
+
 @import "tailwindcss";
 
+@theme {
+  --font-neuMachina: neuMachina, "sans-serif";
+}
 
-
-html, body {
+html,
+body {
   background-color: white;
   height: 100%;
   width: 100%;

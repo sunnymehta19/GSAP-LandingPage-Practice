@@ -21,6 +21,8 @@ function App() {
   const logoeRef = useRef()
   const listRef = useRef()
   const marqueRef = useRef()
+  const cursorRef = useRef()
+  const cursorDivRef = useRef()
 
   useGSAP(() => {
 
@@ -61,10 +63,24 @@ function App() {
     })
   })
 
+  const cursorAnimation = (e) => {
+    console.log(e)
+    gsap.to(cursorRef.current, {
+      x: e.clientX,
+      y: e.clientY,
+      duration: 0.85,
+      ease: "back.out(4)"
+    });
+
+  }
+
+
 
   return (
     <>
-      <main>
+      <main onMouseMove={cursorAnimation} className=''>
+        {/* Cursor Animation */}
+        <div ref={cursorRef} className="fixed top-0 left-0 h-3 w-3 bg-black rounded-full pointer-events-none z-[999]"></div>
         {/* section1 */}
         <div className="section1">
           <nav className='flex justify-between px-10 py-6'>
@@ -83,9 +99,9 @@ function App() {
           </nav>
 
           <div className="hero flex px-10 py-7">
-            <div className="left h-[70vh] w-1/2">
+            <div className="left h-[70vh] w-1/2 ml-14">
               <div className="top h-[35vh]">
-                <h1 className="text-[48px] w-[70%] leading-15 font-neuMachina pl-5 pt-4">Navigating the digital landscape for success</h1>
+                <h1 className="text-[48px] w-[80%] leading-15 font-neuMachina pl-5 pt-4">Navigating the digital landscape for success</h1>
               </div>
               <div className="bottom">
                 <div className="paragraph w-[85%] pl-5">Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC. social media marketing and content creation. Helping brands increase visibility and reach the right audience.</div>

@@ -23,6 +23,36 @@ function App() {
   const marqueRef = useRef()
   const cursorRef = useRef()
   const cursorDivRef = useRef()
+  const jiggleRef = useRef()
+  const serviceRef = useRef()
+
+  let initialPoints = `M 10 100 Q 500 100 990 100`;
+
+
+  const jiggleEffect = (e) => {
+    const bounds = jiggleRef.current.getBoundingClientRect();
+
+    const x = e.clientX - bounds.left;
+    const y = e.clientY - bounds.top;
+
+    let path = `M 10 100 Q ${x} ${y} 990 100`
+
+    gsap.to(".jiggle svg path", {
+      attr: { d: path },
+      duration: 0.2,
+      ease: "power3.out",
+      overwrite: true,
+    })
+
+  }
+
+  const jiggleEffectLeave = () => {
+    gsap.to(".jiggle svg path", {
+      attr: { d: initialPoints },
+      duration: 1.5,
+      ease: "elastic.out(1,0.1)"
+    })
+  }
 
   useGSAP(() => {
 
@@ -64,15 +94,31 @@ function App() {
   })
 
   const cursorAnimation = (e) => {
-    console.log(e)
     gsap.to(cursorRef.current, {
       x: e.clientX,
       y: e.clientY,
-      duration: 0.85,
+      duration: 1,
       ease: "back.out(4)"
     });
 
   }
+
+  useGSAP(() => {
+    gsap.from(serviceRef.current, {
+      opacity: 0,
+      duration: 0.5,
+      y: -50,
+      scrollTrigger: {
+        trigger: serviceRef.current,
+        scroller: "body", 
+        markers: true,
+
+        start: "top 60%",
+      }
+    })
+    
+  }
+  )
 
 
 
@@ -113,6 +159,12 @@ function App() {
             </div>
           </div>
 
+          {/* SVG Jiggle Effect */}
+          <div onMouseMove={jiggleEffect} onMouseLeave={jiggleEffectLeave} ref={jiggleRef} className="jiggle flex justify-center">
+            <svg width="1000" height="200" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 10 100 Q 500 100 990 100" stroke="#000" fill="transparent" />
+            </svg>
+          </div>
 
         </div>
         {/* section2 */}
@@ -144,7 +196,7 @@ function App() {
         </section>
         {/* section3 */}
         <section className="sectoin3 min-h-[100vh] w-full px-10 py-16">
-          <div className="services px-28 flex gap-7 items-center justify-center">
+          <div ref={serviceRef} className="services px-28 flex gap-7 items-center justify-center">
             <div className="text-[35px] font-bold capitalize bg-[#B9FF66] px-3 py-1 rounded-lg font-neuMachina ">services</div>
             <div className="w-[40vw] leading-5 font-neuMachina">At our digital marketing agency. we offer a range of services to help businesses grow and succeed online. These services include:</div>
           </div>

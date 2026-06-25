@@ -28,7 +28,13 @@ function App() {
   const cursorDivRef = useRef()
   const jiggleRef = useRef()
   const servicesHeadingRef = useRef();
-  const section3Ref = useRef();
+  const box1Ref = useRef();
+  const box2Ref = useRef();
+  const box3Ref = useRef();
+  const box4Ref = useRef();
+  const darkFaceRef = useRef();
+  const caseStudyRef = useRef();
+  const threeCardRef = useRef();
 
   let initialPoints = `M 10 100 Q 500 100 990 100`;
 
@@ -108,21 +114,167 @@ function App() {
   }
 
   useGSAP(() => {
-    gsap.from(section3Ref.current, {
+    gsap.from(servicesHeadingRef.current, {
       opacity: 0,
       duration: 1,
-      y: -50,
+      x: 100,
       scrollTrigger: {
         trigger: servicesHeadingRef.current,
         scroller: "body",
         markers: true,
-
+        once: true,
         start: "top 80%",
       }
     })
 
+  })
+
+  useGSAP(() => {
+    gsap.from(box1Ref.current, {
+      opacity: 0,
+      duration: 1,
+      x: -100,
+      scrollTrigger: {
+        trigger: box1Ref.current,
+        scroller: "body",
+        markers: true,
+        once: true,
+        start: "top 80%",
+      }
+    })
+  })
+
+  useGSAP(() => {
+    gsap.from(box2Ref.current, {
+      opacity: 0,
+      duration: 1,
+      x: 100,
+      scrollTrigger: {
+        trigger: box2Ref.current,
+        scroller: "body",
+        markers: true,
+        once: true,
+        start: "top 80%",
+      }
+    })
+  })
+
+  useGSAP(() => {
+    gsap.from(box3Ref.current, {
+      opacity: 0,
+      duration: 1,
+      x: -100,
+      scrollTrigger: {
+        trigger: box3Ref.current,
+        scroller: "body",
+        markers: true,
+        once: true,
+        start: "top 80%",
+      }
+    })
+  })
+
+  useGSAP(() => {
+    gsap.from(box4Ref.current, {
+      opacity: 0,
+      duration: 1,
+      x: 100,
+      scrollTrigger: {
+        trigger: box4Ref.current,
+        scroller: "body",
+        markers: true,
+        once: true,
+        start: "top 80%",
+      }
+    })
+  })
+
+  useGSAP(() => {
+    gsap.from(darkFaceRef.current, {
+      opacity: 0,
+      duration: 1,
+      x: 100,
+      scrollTrigger: {
+        trigger: darkFaceRef.current,
+        scroller: "body",
+        markers: true,
+        once: true,
+        start: "top 70%",
+      }
+    })
+  })
+
+  useGSAP(() => {
+    gsap.from(caseStudyRef.current, {
+      opacity: 0,
+      duration: 1,
+      y: 50,
+      scrollTrigger: {
+        trigger: caseStudyRef.current,
+        scroller: "body",
+        markers: true,
+        once: true,
+        start: "top 80%",
+      }
+    })
+
+  })
+
+  useGSAP(() => {
+    gsap.from(threeCardRef.current, {
+      opacity: 0,
+      duration: 1,
+      x: -100,
+      scrollTrigger: {
+        trigger: threeCardRef.current,
+        scroller: "body",
+        markers: true,
+        once: true,
+        start: "top 70%",
+      }
+    })
+  })
+
+  const cursorViewButton = (bg, color) => {
+    cursorRef.current.innerHTML = "View<br>More"
+    gsap.to(cursorRef.current, {
+      width: 50,
+      height: 50,
+      backgroundColor: bg,
+      color: color,
+      duration: 0.3,
+      // ease: "power2.out",
+
+    })
+
+    cursorRef.current.style.background = "rgba(255,255,255,0.15)";
+    cursorRef.current.style.backdropFilter = "blur(15px)";
+    cursorRef.current.style.border = "1px solid rgba(255,255,255,0.3)";
+
   }
-  )
+
+  const cursorViewButtonLeave = () => {
+    cursorRef.current.innerHTML = ""
+    gsap.to(cursorRef.current, {
+      width: 12,
+      height: 12,
+      duration: 0.3,
+      backgroundColor: "#000",
+      color: "#fff",
+    })
+
+    cursorRef.current.style.background = "#000";
+    cursorRef.current.style.backdropFilter = "blur(0px)";
+    cursorRef.current.style.border = "none";
+
+  }
+
+
+
+
+
+
+
 
 
 
@@ -130,7 +282,7 @@ function App() {
     <>
       <main onMouseMove={cursorAnimation} className=''>
         {/* Cursor Animation */}
-        <div ref={cursorRef} className="fixed top-0 left-0 h-3 w-3 bg-black rounded-full pointer-events-none z-[999]"></div>
+        <div ref={cursorRef} className="fixed top-0 left-0 h-3 w-3 flex bg-black text-[#FF0000] justify-center text-[8px] whitespace-break-spaces items-center rounded-full pointer-events-none z-[999]"></div>
         {/* section1 */}
         <div className="section1">
           <nav className='flex justify-between px-10 py-6'>
@@ -199,7 +351,7 @@ function App() {
 
         </section>
         {/* section3 */}
-        <section ref={section3Ref} className="section3 min-h-[100vh] w-full px-10 py-16 ">
+        <section className="section3 min-h-[100vh] w-full px-10 py-16 ">
           <div ref={servicesHeadingRef} className="services px-28 flex gap-7 items-center justify-center">
             <div className="text-[35px] font-bold capitalize bg-[#B9FF66] px-3 py-1 rounded-lg font-neuMachina ">services</div>
             <div className="w-[40vw] leading-5 font-neuMachina">At our digital marketing agency. we offer a range of services to help businesses grow and succeed online. These services include:</div>
@@ -208,7 +360,8 @@ function App() {
           <div className="boxContainer flex gap-x-20 gap-y-10 py-14 flex-wrap items-center justify-center">
 
             {/* box1 */}
-            <div className="h-[220px] w-[500px] border  rounded-3xl border-b-7 flex">
+            <div onMouseEnter={() => cursorViewButton("#000", "#fff")} onMouseLeave={cursorViewButtonLeave} ref={box1Ref} className="h-[220px] w-[500px] border cursor-pointer  rounded-3xl border-b-7 flex relative">
+              <div className="overlay h-full w-full absolute bg-transparent rounded-3xl"></div>
               <div className="p-7 flex-col flex justify-between h-[210px] w-[45%]">
                 <div className="font-neuMachina text-[20px] w-[100%] font-bold bg-[#B9FF66] rounded-lg p-1">Search Engine Optimization</div>
                 <div className="flex gap-2 items-center ">
@@ -221,8 +374,9 @@ function App() {
                 <img className='w-full h-full object-cover rounded-3xl' src={box1Image} alt="seo" />
               </div>
             </div>
+
             {/* box2 */}
-            <div className="h-[220px] w-[500px] border  rounded-3xl border-b-7 flex bg-black">
+            <div onMouseEnter={() => cursorViewButton("#fff", "#000")} onMouseLeave={cursorViewButtonLeave} ref={box2Ref} className="h-[220px] w-[500px] border cursor-pointer  rounded-3xl border-b-7 flex bg-black">
               <div className="p-7 flex-col flex justify-between h-[210px] w-[45%]">
                 <div className="font-neuMachina text-[20px] w-[100%] font-bold bg-white rounded-lg p-1">Pay per click advertising</div>
                 <div className="flex gap-2 items-center ">
@@ -235,8 +389,9 @@ function App() {
                 <img className='w-full h-full object-cover rounded-3xl p-4' src={box2Image} alt="seo" />
               </div>
             </div>
+
             {/* box3 */}
-            <div className="h-[220px] w-[500px] border  rounded-3xl border-b-7 flex bg-black">
+            <div onMouseEnter={() => cursorViewButton("#000", "#fff")} onMouseLeave={cursorViewButtonLeave} ref={box3Ref} className="h-[220px] w-[500px] border cursor-pointer  rounded-3xl border-b-7 flex bg-black">
               <div className="p-7 flex-col flex justify-between h-[210px] w-[45%]">
                 <div className="font-neuMachina text-[20px] w-[100%] font-bold bg-white rounded-lg p-1">Social media marketing</div>
                 <div className="flex gap-2 items-center ">
@@ -249,8 +404,9 @@ function App() {
                 <img className='w-full h-full object-cover rounded-3xl p-5' src={box3Image} alt="seo" />
               </div>
             </div>
+
             {/* box4 */}
-            <div className="h-[220px] w-[500px] border  rounded-3xl border-b-7 flex">
+            <div onMouseEnter={() => cursorViewButton("#fff", "#000")} onMouseLeave={cursorViewButtonLeave} ref={box4Ref} className="h-[220px] w-[500px] border cursor-pointer  rounded-3xl border-b-7 flex">
               <div className="p-7 flex-col flex justify-between h-[210px] w-[45%]">
                 <div className="font-neuMachina text-[20px] w-[100%] font-bold bg-[#B9FF66] rounded-lg p-1">E-mail marketing</div>
                 <div className="flex gap-2 items-center ">
@@ -270,7 +426,8 @@ function App() {
 
         {/* section4 */}
         <section className="section4 min-h-[100vh] w-full pt-0 pb-12 px-15">
-          <div className="flex h-[35vh] w-full  rounded-4xl bg-[#F3F3F3]">
+
+          <div ref={darkFaceRef} className="flex h-[35vh] w-full  rounded-4xl bg-[#F3F3F3]">
             <div className="w-[60%] p-10">
               <h2 className="font-neuMachina font-bold text-3xl pb-4">Let's make things happen</h2>
               <h4 className="w-[70%] font-neuMachina leading-4 pb-5">Contact us today to learn more about how our digital marketing services can help your business grow and succeed online</h4>
@@ -282,12 +439,12 @@ function App() {
           </div>
 
           {/* case study */}
-          <div className="services px-28 flex gap-7 items-center py-12 justify-center">
+          <div ref={caseStudyRef} className="services px-28 flex gap-7 items-center py-12 justify-center">
             <div className="text-[35px] font-bold capitalize bg-[#B9FF66] px-3 py-1 rounded-lg font-neuMachina ">Case Study</div>
             <div className="w-[40vw] leading-5 font-neuMachina">At our digital marketing agency. we offer a range of services to help businesses grow and succeed online. These services include:</div>
           </div>
 
-          <div className="flex items-center justify-between gap-20 h-[35vh] w-full rounded-4xl bg-black px-10 py-8 text-white">
+          <div ref={threeCardRef} className="flex items-center justify-between gap-20 h-[35vh] w-full rounded-4xl bg-black px-10 py-8 text-white">
             <div className="flex flex-col justify-between h-[140px]">
               <div className="">
                 For a looal restaurant, we implemented a targeted PPO campaign that resulted in a B0% Increate in website traffic and a 20% Increase in sales.

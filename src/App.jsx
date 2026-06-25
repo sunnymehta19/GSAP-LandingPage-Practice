@@ -13,6 +13,9 @@ import box3Image from "/logo/box3-image.jpg";
 import box4Image from "/logo/box4-image.jpg";
 import darkFaceStar from "/logo/darkFaceStar.png";
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 import gsap from "gsap";
 
 
@@ -24,7 +27,8 @@ function App() {
   const cursorRef = useRef()
   const cursorDivRef = useRef()
   const jiggleRef = useRef()
-  const serviceRef = useRef()
+  const servicesHeadingRef = useRef();
+  const section3Ref = useRef();
 
   let initialPoints = `M 10 100 Q 500 100 990 100`;
 
@@ -104,19 +108,19 @@ function App() {
   }
 
   useGSAP(() => {
-    gsap.from(serviceRef.current, {
+    gsap.from(section3Ref.current, {
       opacity: 0,
-      duration: 0.5,
+      duration: 1,
       y: -50,
       scrollTrigger: {
-        trigger: serviceRef.current,
-        scroller: "body", 
+        trigger: servicesHeadingRef.current,
+        scroller: "body",
         markers: true,
 
-        start: "top 60%",
+        start: "top 80%",
       }
     })
-    
+
   }
   )
 
@@ -195,8 +199,8 @@ function App() {
 
         </section>
         {/* section3 */}
-        <section className="sectoin3 min-h-[100vh] w-full px-10 py-16">
-          <div ref={serviceRef} className="services px-28 flex gap-7 items-center justify-center">
+        <section ref={section3Ref} className="section3 min-h-[100vh] w-full px-10 py-16 ">
+          <div ref={servicesHeadingRef} className="services px-28 flex gap-7 items-center justify-center">
             <div className="text-[35px] font-bold capitalize bg-[#B9FF66] px-3 py-1 rounded-lg font-neuMachina ">services</div>
             <div className="w-[40vw] leading-5 font-neuMachina">At our digital marketing agency. we offer a range of services to help businesses grow and succeed online. These services include:</div>
           </div>

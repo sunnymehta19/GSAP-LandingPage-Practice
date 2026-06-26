@@ -1,16 +1,103 @@
-# React + Vite
+# 🎨 WizardZ - GSAP Animated Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, fully responsive landing page inspired by the **WizardZ** website, built with **React**, **GSAP**, and **Tailwind CSS**.
 
-Currently, two official plugins are available:
+The project focuses on creating smooth user experiences using advanced animations, custom cursor interactions, SVG morphing, scroll-based effects, and interactive UI components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🌐 Live Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🔗 https://wizardz-gsap-blush.vercel.app/
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Features
+
+* ⚡ Smooth page load animations using GSAP Timeline
+* 🎯 Custom animated cursor with glassmorphism effect
+* 🖱️ Cursor interaction on service cards
+* 🌊 Interactive SVG Jiggle Effect
+* 📜 Scroll-triggered animations using GSAP ScrollTrigger
+* ♾️ Infinite marquee animation
+* 🎨 Modern responsive UI
+* 🪰 Mini "Hit the Fly" game
+* 📱 Fully responsive across Mobile, Tablet, Laptop & Desktop
+* 💚 Smooth hover interactions
+* 🚀 Optimized React component structure
+
+---
+
+## 🛠️ Tech Stack
+
+* React.js
+* Vite
+* Tailwind CSS
+* GSAP
+* GSAP ScrollTrigger
+* Remix Icons
+
+---
+
+
+## 🎬 GSAP Animations Used
+
+### Hero Section
+
+* Timeline animations
+* Fade In
+* Slide In
+
+### Marquee
+
+* Infinite horizontal scrolling
+
+### SVG
+
+* Dynamic path morphing
+* Mouse tracking
+* Elastic reset animation
+
+### Services Section
+
+* Scroll-triggered reveal animations
+* Custom cursor interaction
+
+### Case Study
+
+* Scroll reveal
+* Fade + Translate animations
+
+### Text Animation
+
+* Horizontal scrolling text
+* Pinned section
+
+### Mini Game
+
+* Click interaction
+* Random fly movement using GSAP
+
+---
+
+## 📚 What I Learned
+
+While building this project I practiced:
+
+* React component development
+* GSAP Timeline
+* ScrollTrigger
+* SVG path animations
+* Mouse tracking
+* Custom cursor effects
+* Responsive design with Tailwind CSS
+* Interactive UI development
+* Animation performance optimization
+
+---
+
+
+## 👨‍💻 Author
+
+**Sunny Mehta**

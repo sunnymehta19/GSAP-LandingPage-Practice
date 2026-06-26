@@ -12,6 +12,7 @@ import box2Image from "/logo/box2-image.jpg";
 import box3Image from "/logo/box3-image.jpg";
 import box4Image from "/logo/box4-image.jpg";
 import darkFaceStar from "/logo/darkFaceStar.png";
+import houseFly from "/logo/houseFly.png";
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -20,6 +21,7 @@ import gsap from "gsap";
 
 
 function App() {
+
   const [count, setCount] = useState(0);
   const logoeRef = useRef()
   const listRef = useRef()
@@ -35,8 +37,16 @@ function App() {
   const darkFaceRef = useRef();
   const caseStudyRef = useRef();
   const threeCardRef = useRef();
+  const textRef = useRef();
+  const flyRef = useRef();
+
+  const [flyX, setFlyX] = useState()
+  const [flyY, setFlyY] = useState()
 
   let initialPoints = `M 10 100 Q 500 100 990 100`;
+
+  const randomX = gsap.utils.random(200, 1000, 40)
+  const randomY = gsap.utils.random(200, 500, 40)
 
 
   const jiggleEffect = (e) => {
@@ -121,7 +131,6 @@ function App() {
       scrollTrigger: {
         trigger: servicesHeadingRef.current,
         scroller: "body",
-        markers: true,
         once: true,
         start: "top 80%",
       }
@@ -137,7 +146,6 @@ function App() {
       scrollTrigger: {
         trigger: box1Ref.current,
         scroller: "body",
-        markers: true,
         once: true,
         start: "top 80%",
       }
@@ -152,7 +160,6 @@ function App() {
       scrollTrigger: {
         trigger: box2Ref.current,
         scroller: "body",
-        markers: true,
         once: true,
         start: "top 80%",
       }
@@ -167,7 +174,6 @@ function App() {
       scrollTrigger: {
         trigger: box3Ref.current,
         scroller: "body",
-        markers: true,
         once: true,
         start: "top 80%",
       }
@@ -182,7 +188,6 @@ function App() {
       scrollTrigger: {
         trigger: box4Ref.current,
         scroller: "body",
-        markers: true,
         once: true,
         start: "top 80%",
       }
@@ -197,7 +202,6 @@ function App() {
       scrollTrigger: {
         trigger: darkFaceRef.current,
         scroller: "body",
-        markers: true,
         once: true,
         start: "top 70%",
       }
@@ -212,7 +216,6 @@ function App() {
       scrollTrigger: {
         trigger: caseStudyRef.current,
         scroller: "body",
-        markers: true,
         once: true,
         start: "top 80%",
       }
@@ -228,7 +231,6 @@ function App() {
       scrollTrigger: {
         trigger: threeCardRef.current,
         scroller: "body",
-        markers: true,
         once: true,
         start: "top 70%",
       }
@@ -243,7 +245,6 @@ function App() {
       backgroundColor: bg,
       color: color,
       duration: 0.3,
-      // ease: "power2.out",
 
     })
 
@@ -270,19 +271,36 @@ function App() {
   }
 
 
+  useGSAP(() => {
+    gsap.to(textRef.current, {
+      x: "-170%",
+      scrollTrigger: {
+        trigger: ".section5",
+        scroller: "body",
+        start: "top -10%",
+        end: "top -100%",
+        scrub: 3,
+        pin: true,
+      }
 
+    })
+  })
 
+  useGSAP(() => {
+    gsap.to(flyRef.current, {
+      x: flyX,
+      y: flyY,
+      duration: 0.5,
 
-
-
-
+    })
+  }, {scope: ".section6", dependencies: [[flyX, flyY]]})
 
 
   return (
     <>
-      <main onMouseMove={cursorAnimation} className=''>
+      <main onMouseMove={cursorAnimation} className='overflow-x-hidden'>
         {/* Cursor Animation */}
-        <div ref={cursorRef} className="fixed top-0 left-0 h-3 w-3 flex bg-black text-[#FF0000] justify-center text-[8px] whitespace-break-spaces items-center rounded-full pointer-events-none z-[999]"></div>
+        <div ref={cursorRef} className="fixed top-0 left-0 h-3 w-3 flex bg-black justify-center text-[8px] whitespace-break-spaces items-center rounded-full pointer-events-none z-[999]"></div>
         {/* section1 */}
         <div className="section1">
           <nav className='flex justify-between px-10 py-6'>
@@ -307,7 +325,7 @@ function App() {
               </div>
               <div className="bottom">
                 <div className="paragraph w-[85%] pl-5">Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC. social media marketing and content creation. Helping brands increase visibility and reach the right audience.</div>
-                <button className='border px-6 rounded-lg border-2 py-2 ml-5 cursor-pointer text-[19px] bg-black text-white border-none my-4 '>Book a consultation</button>
+                <button className='border px-6 rounded-lg border-2 py-2 ml-5 mt-8 cursor-pointer text-[19px] bg-black text-white border-none my-4 '>Book a consultation</button>
               </div>
             </div>
             <div className="right  h-[70vh] w-1/2">
@@ -391,7 +409,7 @@ function App() {
             </div>
 
             {/* box3 */}
-            <div onMouseEnter={() => cursorViewButton("#000", "#fff")} onMouseLeave={cursorViewButtonLeave} ref={box3Ref} className="h-[220px] w-[500px] border cursor-pointer  rounded-3xl border-b-7 flex bg-black">
+            <div onMouseEnter={() => cursorViewButton("#fff", "#000")} onMouseLeave={cursorViewButtonLeave} ref={box3Ref} className="h-[220px] w-[500px] border cursor-pointer  rounded-3xl border-b-7 flex bg-black">
               <div className="p-7 flex-col flex justify-between h-[210px] w-[45%]">
                 <div className="font-neuMachina text-[20px] w-[100%] font-bold bg-white rounded-lg p-1">Social media marketing</div>
                 <div className="flex gap-2 items-center ">
@@ -406,7 +424,7 @@ function App() {
             </div>
 
             {/* box4 */}
-            <div onMouseEnter={() => cursorViewButton("#fff", "#000")} onMouseLeave={cursorViewButtonLeave} ref={box4Ref} className="h-[220px] w-[500px] border cursor-pointer  rounded-3xl border-b-7 flex">
+            <div onMouseEnter={() => cursorViewButton("#000", "#fff")} onMouseLeave={cursorViewButtonLeave} ref={box4Ref} className="h-[220px] w-[500px] border cursor-pointer  rounded-3xl border-b-7 flex">
               <div className="p-7 flex-col flex justify-between h-[210px] w-[45%]">
                 <div className="font-neuMachina text-[20px] w-[100%] font-bold bg-[#B9FF66] rounded-lg p-1">E-mail marketing</div>
                 <div className="flex gap-2 items-center ">
@@ -481,8 +499,20 @@ function App() {
         </section>
 
         {/* section5 */}
-        <section className="section5 min-h-[100vh] w-full ">
+        <section className="section5 min-h-[90vh] w-full bg-[#B9FF66] overflow-x-hidden">
+          <div ref={textRef} className="text-[75vh] font-neuMachina uppercase whitespace-nowrap font-bold">sunny mehta</div>
+
         </section>
+
+        {/* section6 */}
+        <section className="section6  min-h-[100vh] w-full overflow-x-hidden">
+          <div className="flex justify-center uppercase font-bold text-4xl pt-3 font-neuMachina">Hit the fly</div>
+          <img onClick={() => {
+            setFlyX(randomX)
+            setFlyY(randomY)
+          }} ref={flyRef} className='w-30 h-30' src={houseFly} alt="fly" />
+        </section>
+
       </main>
     </>
   )
